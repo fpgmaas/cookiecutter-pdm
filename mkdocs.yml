@@ -1,10 +1,10 @@
-site_name: cookiecutter-poetry
-repo_url: https://github.com/fpgmaas/cookiecutter-poetry
-site_url: https://fpgmaas.github.io/cookiecutter-poetry
-site_description: A cookiecutter template for Python projects that use Poetry for its dependency management
+site_name: cookiecutter-pdm
+repo_url: https://github.com/fpgmaas/cookiecutter-pdm
+site_url: https://fpgmaas.github.io/cookiecutter-pdm
+site_description: A cookiecutter template for Python projects that use PDM for its dependency management
 site_author: Florian Maas
 edit_uri: edit/main/docs/
-repo_name: fpgmaas/cookiecutter-poetry
+repo_name: fpgmaas/cookiecutter-pdm
 copyright: Maintained by <a href="https://fpgmaas.com">Florian</a>.
 
 nav:
@@ -13,7 +13,7 @@ nav:
     - CI/CD with Github Actions: features/cicd.md
     - Linting & code quality: features/linting.md
     - Makefile: features/makefile.md
-    - Dependency management with Poetry: features/poetry.md
+    - Dependency management with PDM: features/pdm.md
     - Publishing to PyPi or Artifactory: features/publishing.md
     - Testing with Pytest: features/pytest.md
     - Test coverage with codecov: features/codecov.md
@@ -49,9 +49,9 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/fpgmaas/cookiecutter-poetry
+      link: https://github.com/fpgmaas/cookiecutter-pdm
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/cookiecutter-poetry/
+      link: https://pypi.org/project/cookiecutter-pdm/
 markdown_extensions:
   - toc:
       permalink: true

@@ -1,6 +1,6 @@
 # Prompt arguments
 
-When running the command ``ccp`` a prompt will start which enables you to configure your repository. The
+When running the command ``ccpdm`` a prompt will start which enables you to configure your repository. The
 prompt values and their explanation are as follows:
 
 ---

@@ -1,5 +1,7 @@
 example-project
-cookiecutter-poetry-example
+cookiecutter-pdm-example
+
+.pdm-python
 
 # From https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore
 

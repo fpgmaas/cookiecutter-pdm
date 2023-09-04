@@ -8,7 +8,7 @@ added with the following structure:
     ├── workflows
     ├─── run-checks
     │    └── action.yml    
-    ├─── setup-poetry-env
+    ├─── setup-pdm-env
     │    └── action.yml         
     ├── on-merge-to-main.yml
     ├── on-pull-request.yml          

@@ -9,7 +9,7 @@ You can contribute in many ways:
 
 ## Report Bugs
 
-Report bugs at <https://github.com/fpgmaas/cookiecutter-poetry/issues
+Report bugs at <https://github.com/fpgmaas/cookiecutter-pdm/issues
 
 If you are reporting a bug, please include:
 
@@ -38,7 +38,7 @@ posts, articles, and such.
 ## Submit Feedback
 
 The best way to send feedback is to file an issue at
-<https://github.com/fpgmaas/cookiecutter-poetry/issues.
+<https://github.com/fpgmaas/cookiecutter-pdm/issues.
 
 If you are proposing a new feature:
 
@@ -51,23 +51,23 @@ If you are proposing a new feature:
 # Get Started!
 
 Ready to contribute? Here\'s how to set up
-`cookiecutter-poetry` for local development. Please note
-this documentation assumes you already have `poetry` and
+`cookiecutter-pdm` for local development. Please note
+this documentation assumes you already have `pdm` and
 `git` installed and ready to go.
 
-1. Fork the `cookiecutter-poetry` repo on GitHub.
+1. Fork the `cookiecutter-pdm` repo on GitHub.
 
 2. Clone your fork locally:
 
   ``` bash
   cd <directory_in_which_repo_should_be_created
-  git clone git@github.com:YOUR_NAME/cookiecutter-poetry.git
+  git clone git@github.com:YOUR_NAME/cookiecutter-pdm.git
   ```
 
 3. Now we need to install the environment. Navigate into the project directory:
 
 ``` bash
-cd cookiecutter-poetry
+cd cookiecutter-pdm
 ```
 
 If you are using `pyenv`, select a version to use locally. (See
@@ -77,17 +77,16 @@ installed versions with `pyenv versions`)
 pyenv local <x.y.z
 ```
 
-Then, install and activate the environment with:
+Then, install the environment with:
 
 ``` bash
-poetry install
-poetry shell
+pdm install
 ```
 
 
 4. Install pre-commit to run linters/formatters at commit time:
 
-    poetry run pre-commit install
+    pdm run pre-commit install
 
 5. Create a branch for local development:
 

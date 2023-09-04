@@ -58,7 +58,7 @@ Get Started!
 
 Ready to contribute? Here's how to set up `{{cookiecutter.project_name}}` for local
 development. Please note this documentation assumes you already have
-`poetry` and `Git` installed and ready to go.
+`PDM` and `Git` installed and ready to go.
 
 | 1. Fork the `{{cookiecutter.project_name}}` repo on GitHub. 
 
@@ -82,18 +82,17 @@ development. Please note this documentation assumes you already have
 
        pyenv local <x.y.z>
 
-   Then, install and activate the environment with:
+   Then, install the environment with:
 
    .. code-block:: bash
 
-        poetry install
-        poetry shell
+        pdm install
 
 | 4. Install pre-commit to run linters/formatters at commit time:
 
    .. code-block:: bash
 
-        poetry run pre-commit install
+        pdm run pre-commit install
 
 | 5. Create a branch for local development:
 

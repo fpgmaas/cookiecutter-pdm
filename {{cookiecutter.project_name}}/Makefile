@@ -1,36 +1,35 @@
 .PHONY: install
-install: ## Install the poetry environment and install the pre-commit hooks
-	@echo "🚀 Creating virtual environment using pyenv and poetry"
-	@poetry install	
-	@ poetry run pre-commit install
-	@poetry shell
+install: ## Install the environment and install the pre-commit hooks
+	@echo "🚀 Creating virtual environment using PDM"
+	@pdm install	
+	@pdm run pre-commit install
 
 .PHONY: check
 check: ## Run code quality tools.
-	@echo "🚀 Checking Poetry lock file consistency with 'pyproject.toml': Running poetry lock --check"
-	@poetry lock --check
+	@echo "🚀 Checking pdm lock file consistency with 'pyproject.toml': Running pdm lock --check"
+	@pdm lock --check
 	@echo "🚀 Linting code: Running pre-commit"
-	@poetry run pre-commit run -a
+	@pdm run pre-commit run -a
 	@echo "🚀 Static type checking: Running mypy"
-	@poetry run mypy
+	@pdm run mypy
 {%- if cookiecutter.deptry == 'y' %}
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
-	@poetry run deptry .
+	@pdm run deptry .
 {%- endif %}
 
 .PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
 {%- if cookiecutter.codecov == "y"%}
-	@poetry run pytest --cov --cov-config=pyproject.toml --cov-report=xml
+	@pdm run pytest --cov --cov-config=pyproject.toml --cov-report=xml
 {%- else %}
-	@poetry run pytest --doctest-modules
+	@pdm run pytest --doctest-modules
 {%- endif%}
 
 .PHONY: build
-build: clean-build ## Build wheel file using poetry
+build: clean-build ## Build wheel file
 	@echo "🚀 Creating wheel file"
-	@poetry build
+	@pdm build
 
 .PHONY: clean-build
 clean-build: ## clean build artifacts
@@ -41,22 +40,21 @@ clean-build: ## clean build artifacts
 .PHONY: publish
 publish: ## publish a release to pypi.
 	@echo "🚀 Publishing: Dry run."
-	@poetry config pypi-token.pypi $(PYPI_TOKEN)
-	@poetry publish --dry-run
+	@pdm publish --dry-run
 	@echo "🚀 Publishing."
-	@poetry publish
+	@pdm publish
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
 {%- elif cookiecutter.publish_to == "artifactory" %}
 
 .PHONY: publish
-publish: ## Publish to the Artifactory repository using poetry. Requires ARTIFACTORY_TOKEN for DPS-FF-ILO to be set.
+publish: ## Publish to the Artifactory repository using PDM. Requires ARTIFACTORY_TOKEN to be set.
 	@echo "🚀 Publishing: Dry run."
-	@poetry config repositories.artifactory $(ARTIFACTORY_URL)
-	@poetry publish --repository artifactory --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD) --dry-run
+	@pdm config repositories.artifactory $(ARTIFACTORY_URL)
+	@pdm publish --repository artifactory --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD) --dry-run
 	@echo "🚀 Publishing."
-	@poetry publish --repository artifactory --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD)
+	@pdm publish --repository artifactory --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD)
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
@@ -66,11 +64,11 @@ build-and-publish: build publish ## Build and publish.
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
-	@poetry run mkdocs build -s
+	@pdm run mkdocs build -s
 
 .PHONY: docs
 docs: ## Build and serve the documentation
-	@poetry run mkdocs serve
+	@pdm run mkdocs serve
 
 {%- endif %}
 

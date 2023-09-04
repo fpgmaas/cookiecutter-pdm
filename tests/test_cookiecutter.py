@@ -38,10 +38,10 @@ def test_using_pytest(cookies, tmp_path):
         assert result.project_path.name == "example-project"
         assert result.project_path.is_dir()
 
-        # Install the poetry environment and run the tests.
+        # Install the environment and run the tests.
         with run_within_dir(str(result.project_path)):
-            assert subprocess.check_call(shlex.split("poetry install --no-interaction")) == 0
-            assert subprocess.check_call(shlex.split("poetry run make test")) == 0
+            assert subprocess.check_call(shlex.split("pdm install --no-interaction")) == 0
+            assert subprocess.check_call(shlex.split("pdm run make test")) == 0
 
 
 def test_cicd_contains_artifactory_secrets(cookies, tmp_path):

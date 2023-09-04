@@ -4,7 +4,7 @@
     "author_github_handle" : "fpgmaas",
     "project_name": "example-project",
     "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
-    "project_description": "This is a template repository for Python projects that use Poetry for their dependency management.",
+    "project_description": "This is a template repository for Python projects that use PDM for their dependency management.",
     "include_github_actions": ["y","n"],
     "publish_to": ["pypi", "artifactory", "none"],
     "deptry": ["y", "n"],

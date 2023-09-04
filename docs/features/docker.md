@@ -1,7 +1,7 @@
 # Containerization with Docker
 
 If `dockerfile` is set to `"y"`, a simple `Dockerfile` is added to the 
-repository. The Dockerfile installs poetry, sets up the environment and runs
+repository. The Dockerfile installs PDM, sets up the environment and runs
 `foo.py` when run.
 
 The docker image can be built with

@@ -2,28 +2,19 @@
 
 This page contains a complete tutorial on how to create your project.
 
-## Step 1: Install poetry
+## Step 1: Install PDM
 
-To start, we will need to install `poetry`. The instructions to install poetry can be found
-[here](https://python-poetry.org/docs/). After installing, it is recommended to run
-
-``` bash
-poetry config virtualenvs.in-project true
-```
-
-which will by default create new virtual environments in `./.venv`
-whenever you create them with `poetry init`.
+To start, we will need to install `PDM`. The instructions to install PDM can be found
+[here](https://pdm.fming.dev/latest/).
 
 ## Step 2: Install pyenv (Optional)
 
 I would recommend to use `pyenv` for managing your different Python versions. However, if you prefer another method of
 managing your Python versions, feel free to skip this step and continue to [step 3](#step-3-generate-your-project).  
 
-The instructions to install pyenv can be found [here](https://github.com/pyenv/pyenv). The instructions to install
-poetry can be found [here](https://python-poetry.org/docs/).
+The instructions to install pyenv can be found [here](https://github.com/pyenv/pyenv).
 
-Install a version of Python with pyenv. To see a list of available
-versions, run:
+Install a version of Python with pyenv. To see a list of available versions, run:
 
 ``` bash
 pyenv install --list
@@ -40,17 +31,17 @@ Replacing `3.9.7` with a version of your choosing.
 ## Step 3: Generate your project
 
 First, navigate to the directory in which you want the project to be
-created. Then, we need to install `cookiecutter-poetry` with the
+created. Then, we need to install `cookiecutter-pdm` with the
 following command:
 
 ``` bash
-pip install cookiecutter-poetry
+pip install cookiecutter-pdm
 ```
 
 Within the directory in which you want to create your project, run:
 
 ``` bash
-ccp
+ccpdm
 ```
 
 For an explanation of the prompt arguments, see
@@ -61,8 +52,8 @@ directly pass the URL to Github repository to the `cookiecutter`
 command:
 
 ``` bash
-pip install cookiecutter-poetry
-cookiecutter https://github.com/fpgmaas/cookiecutter-poetry.git
+pip install cookiecutter-pdm
+cookiecutter https://github.com/fpgmaas/cookiecutter-pdm.git
 ```
 
 ## Step 4: Set up your Github repository
@@ -95,11 +86,10 @@ If you are using `pyenv`, you might want to set the local `python` version to be
 pyenv local x.y.z
 ```
 
-Install and activate the `poetry` environment by running:
+Install the `PDM` environment by running:
 
 ``` bash
 make install
-poetry shell
 ```
 
 ## Step 7: Sign up to codecov.io

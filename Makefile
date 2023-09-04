@@ -7,50 +7,49 @@ bake-with-inputs: ## bake with inputs and overwrite if exists.
 	@cookiecutter . --overwrite-if-exists
 
 .PHONY: bake-and-test-deploy
-bake-and-test-deploy: ## For quick publishing to cookiecutter-poetry-example to test GH Actions
-	@rm -rf cookiecutter-poetry-example || true
+bake-and-test-deploy: ## For quick publishing to cookiecutter-pdm-example to test GH Actions
+	@rm -rf cookiecutter-pdm-example || true
 	@cookiecutter --no-input . --overwrite-if-exists \
 		author="Florian Maas" \
 		email="fpgmaas@gmail.com" \
 		github_author_handle=fpgmaas \
-		project_name=cookiecutter-poetry-example \
-		project_slug=cookiecutter_poetry_example 
-	@cd cookiecutter-poetry-example; poetry lock && \
+		project_name=cookiecutter-pdm-example \
+		project_slug=cookiecutter_pdm_example 
+	@cd cookiecutter-pdm-example; pdm lock && \
 		git init -b main && \
 		git add . && \
 		git commit -m "init commit" && \
-		git remote add origin git@github.com:fpgmaas/cookiecutter-poetry-example.git && \
+		git remote add origin git@github.com:fpgmaas/cookiecutter-pdm-example.git && \
 		git push -f origin main
 
 
 .PHONY: install
-install: ## Install the poetry environment
-	@echo "🚀 Creating virtual environment using pyenv and poetry"
-	@poetry install	
-	@poetry shell
+install: ## Install the environment
+	@echo "🚀 Creating virtual environment using pyenv and PDM"
+	@pdm install	
 
 .PHONY: check
 check: ## Run code quality tools.
-	@echo "🚀 Checking Poetry lock file consistency with 'pyproject.toml': Running poetry lock --check"
-	@poetry lock --check
+	@echo "🚀 Checking pdm lock file consistency with 'pyproject.toml': Running pdm lock --check"
+	@pdm lock --check
 	@echo "🚀 Linting code: Running pre-commit"
-	@poetry run pre-commit run -a
+	@pdm run pre-commit run -a
 	@echo "🚀 Linting with ruff"
-	@poetry run ruff hooks tests cookiecutter_poetry --config pyproject.toml
+	@pdm run ruff hooks tests cookiecutter_pdm --config pyproject.toml
 	@echo "🚀 Static type checking: Running mypy"
-	@poetry run mypy
+	@pdm run mypy
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
-	@poetry run deptry .
+	@pdm run deptry .
 
 .PHONY: test
 test: ## Test the code with pytest.
 	@echo "🚀 Testing code: Running pytest"
-	@poetry run pytest --cov --cov-config=pyproject.toml --cov-report=xml tests
+	@pdm run pytest --cov --cov-config=pyproject.toml --cov-report=xml tests
 
 .PHONY: build
-build: clean-build ## Build wheel file using poetry
+build: clean-build ## Build wheel file
 	@echo "🚀 Creating wheel file"
-	@poetry build
+	@pdm build
 
 .PHONY: clean-build
 clean-build: ## clean build artifacts
@@ -59,10 +58,9 @@ clean-build: ## clean build artifacts
 .PHONY: publish
 publish: ## publish a release to pypi.
 	@echo "🚀 Publishing: Dry run."
-	@poetry config pypi-token.pypi $(PYPI_TOKEN)
-	@poetry publish --dry-run
+	@pdm publish --dry-run
 	@echo "🚀 Publishing."
-	@poetry publish
+	@pdm publish
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.

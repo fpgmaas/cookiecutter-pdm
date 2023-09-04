@@ -1,40 +1,58 @@
-[tool.poetry]
+[project]
 name = "{{cookiecutter.project_slug}}"
-version = "0.0.1"
+dynamic = ["version"]
 description = "{{cookiecutter.project_description}}"
-authors = ["{{cookiecutter.author}} <f{{cookiecutter.email}}>"]
-repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
-documentation = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
+authors = [
+    {name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}"},
+]
 readme = "README.md"
 packages = [
   {include = "{{cookiecutter.project_slug}}"}
 ]
+requires-python = ">=3.8,<4.0"
+dependencies = []
+license = {text = "{{cookiecutter.open_source_license}}"}
+keywords = ['python']
 
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
+[tool.pdm.version]
+source = "scm"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.2.0"
-{% if cookiecutter.codecov == 'y' -%}
-pytest-cov = "^4.0.0"
-{% endif -%}
+[project.urls]
+Homepage = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
+Repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
+Documentation = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
+
+[tool.pdm.dev-dependencies]
+test = [
+  "pytest>=7.2.0",
+  {% if cookiecutter.codecov == 'y' -%}
+  "pytest-cov>=4.0.0"
+  {% endif -%}
+  ]
+dev = [
 {% if cookiecutter.deptry == 'y' -%}
-deptry = "^0.6.4"
+  "deptry>=0.6.4",
 {% endif -%}
-mypy = "^0.981"
-pre-commit = "^2.20.0"
-tox = "^3.25.1"
-
+  "mypy>=0.981",
+  "pre-commit>=2.20.0",
+  "tox>=3.25.1"
+]
 {% if cookiecutter.mkdocs == 'y' -%}
-[tool.poetry.group.docs.dependencies]
-mkdocs = "^1.4.2"
-mkdocs-material = "^8.5.10"
-mkdocstrings = {extras = ["python"], version = "^0.19.0"}
+docs = [
+  "mkdocs>=1.4.2",
+  "mkdocs-material>=8.5.10",
+  "mkdocstrings[python]>=0.19.0"
+]
 {%- endif %}
 
+[tool.pdm.build]
+excludes = ["./**/.git"]
+package-dir = "."
+includes = ["{{cookiecutter.project_slug}}"]
+
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [tool.black]
 line-length = 120

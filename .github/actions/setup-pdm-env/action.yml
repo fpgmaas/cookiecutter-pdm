@@ -1,0 +1,26 @@
+name: "setup-pdm-env"
+description: "Composite action to setup the Python and PDM environment."
+
+inputs:
+   python-version:
+     required: false
+     description: "The python version to use"
+     default: "3.11"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install PDM
+      uses: pdm-project/setup-pdm@v3
+      with:
+        python-version: 3.9
+        cache: true
+
+    - name: Install dependencies
+      run: pdm install
+      shell: bash

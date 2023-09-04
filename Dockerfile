@@ -15,6 +15,6 @@ COPY pdm.lock pyproject.toml /code/
 RUN pdm install --no-self
 
 # Copy Python code to the Docker image
-COPY {{cookiecutter.project_slug}}/ /code/{{cookiecutter.project_slug}}//
+COPY cookiecutter_pdm /code/cookiecutter_pdm/
 
-CMD [ "python", "{{cookiecutter.project_slug}}//main.py"]
+CMD [ "python", "cookiecutter_pdm/main.py"]

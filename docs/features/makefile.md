@@ -6,10 +6,10 @@ available commands that are available can be obtained by running
 available:
 
 ```
-install              Install the poetry environment and install the pre-commit hooks
+install              Install the environment and install the pre-commit hooks
 check                Lint and check code by running black, ruff, mypy and deptry.
 test                 Test the code with pytest
-build                Build wheel file using poetry
+build                Build wheel file
 clean-build          clean build artifacts
 publish              publish a release to pypi.
 build-and-publish    Build and publish.
