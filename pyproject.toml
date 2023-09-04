@@ -6,7 +6,7 @@ authors = [
 ]
 readme = "README.md"
 keywords = ['cookiecutter', 'template', 'PDM']
-dynamic = "version"
+dynamic = ["version"]
 license = {text = "MIT"}
 requires-python = ">=3.8,<4.0"
 dependencies = [
