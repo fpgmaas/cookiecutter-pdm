@@ -40,7 +40,9 @@ def test_using_pytest(cookies, tmp_path):
 
         # Install the environment and run the tests.
         with run_within_dir(str(result.project_path)):
-            assert subprocess.check_call(shlex.split("pdm install --no-interaction")) == 0
+            env_vars = os.environ.copy()
+            env_vars["PDM_BUILD_SCM_VERSION"] = "0.0.1"
+            subprocess.check_call(["pdm", "install"], env=env_vars)
             assert subprocess.check_call(shlex.split("pdm run make test")) == 0
 
 
