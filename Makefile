@@ -57,10 +57,8 @@ clean-build: ## clean build artifacts
 
 .PHONY: publish
 publish: ## publish a release to pypi.
-	@echo "🚀 Publishing: Dry run."
-	@pdm publish --dry-run
 	@echo "🚀 Publishing."
-	@pdm publish
+	@pdm publish --password $PYPI_TOKEN
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
