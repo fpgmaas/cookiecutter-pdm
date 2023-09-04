@@ -20,7 +20,7 @@ source = "scm"
 excludes = ["./**/.git"]
 package-dir = "."
 includes = ["cookiecutter_pdm"]
-source-includes = [  
+source-includes = [
   '{{cookiecutter.project_name}}/**/*',
   'cookiecutter.json',
   'hooks/*'

@@ -40,7 +40,7 @@ On your local machine, navigate to the directory in which you want to
 create a project directory, and run the following two commands:
 
 ``` bash
-pip install cookiecutter-pdm 
+pip install cookiecutter-pdm
 ccpdm
 ```
 

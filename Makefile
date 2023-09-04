@@ -14,7 +14,7 @@ bake-and-test-deploy: ## For quick publishing to cookiecutter-pdm-example to tes
 		email="fpgmaas@gmail.com" \
 		github_author_handle=fpgmaas \
 		project_name=cookiecutter-pdm-example \
-		project_slug=cookiecutter_pdm_example 
+		project_slug=cookiecutter_pdm_example
 	@cd cookiecutter-pdm-example; pdm lock && \
 		git init -b main && \
 		git add . && \
@@ -26,7 +26,7 @@ bake-and-test-deploy: ## For quick publishing to cookiecutter-pdm-example to tes
 .PHONY: install
 install: ## Install the environment
 	@echo "🚀 Creating virtual environment using pyenv and PDM"
-	@pdm install	
+	@pdm install
 
 .PHONY: check
 check: ## Run code quality tools.
