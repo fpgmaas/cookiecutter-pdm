@@ -50,10 +50,9 @@ build-and-publish: build publish ## Build and publish.
 .PHONY: publish
 publish: ## Publish to the Artifactory repository using PDM. Requires ARTIFACTORY_TOKEN to be set.
 	@echo "🚀 Publishing: Dry run."
-	@pdm config repositories.artifactory $(ARTIFACTORY_URL)
-	@pdm publish --repository artifactory --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD) --dry-run
+	@pdm publish --repository $(ARTIFACTORY_URL) --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD) --dry-run
 	@echo "🚀 Publishing."
-	@pdm publish --repository artifactory --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD)
+	@pdm publish --repository $(ARTIFACTORY_URL) --username $(ARTIFACTORY_USERNAME) --password $(ARTIFACTORY_PASSWORD)
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
