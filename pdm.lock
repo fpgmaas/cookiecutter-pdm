@@ -6,7 +6,7 @@ groups = ["default", "dev", "docs"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:501692c48e432263dd860c31054952de3359c6d66d17d3c4c0ba9d97c25ff688"
+content_hash = "sha256:8edb7f55e9848859f96485e165ea5bb2eaf3f0a62b73095a85ee57b57ede387f"
 
 [[package]]
 name = "arrow"

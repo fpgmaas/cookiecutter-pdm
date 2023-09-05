@@ -15,8 +15,13 @@ bake-and-test-deploy: ## For quick publishing to cookiecutter-pdm-example to tes
 		github_author_handle=fpgmaas \
 		project_name=cookiecutter-pdm-example \
 		project_slug=cookiecutter_pdm_example
-	@cd cookiecutter-pdm-example; pdm lock && \
+	@cd cookiecutter-pdm-example; pdm install && \
 		git init -b main && \
+		git add . && \
+		pdm run pre-commit install && \
+		pdm run pre-commit run -a || true && \
+		git add . && \
+		pdm run pre-commit run -a || true && \
 		git add . && \
 		git commit -m "init commit" && \
 		git remote add origin git@github.com:fpgmaas/cookiecutter-pdm-example.git && \
